@@ -97,6 +97,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                     detail.Verse? ayat = snapshot.data?.verses?[index] ;
 
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Card(
                           child: Padding(
@@ -109,12 +110,11 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                   CircleAvatar(
                                     child: Text("${index + 1}"),
                                   ),
-                                  const Text("HAI"),
                                   Row(
                                     children: [
                                       IconButton(
                                           onPressed: () {},
-                                          icon: const Icon(Icons.bookmark_add)),
+                                          icon: const Icon(Icons.bookmark_add_outlined)),
                                       IconButton(
                                           onPressed: () {},
                                           icon: const Icon(Icons.play_arrow)),
@@ -124,9 +124,23 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                 ), //ROW AWAL
                           ), //ROW DALEM CARD DALEM BUILDER
                         ), //CARD ATAS YANG BERBUTTON
-                        Text("${ayat!.text?.arab}"),
+                        const SizedBox(height: 20,),
+                        Text("${ayat!.text?.arab}",
+                        textAlign: TextAlign.end, 
+                        style:  const TextStyle(fontSize: 30),
+                        ),
+                        const SizedBox(height: 5,),
+                        Text("${ayat.text?.transliteration?.en}",
+                        textAlign: TextAlign.left, 
+                        style:  const TextStyle(fontSize: 15,fontStyle: FontStyle.italic),
+                        ),
+                        const SizedBox(height: 25,),
+                        Text("${ayat.translation?.id}",
+                        textAlign: TextAlign.justify, 
+                        style:  const TextStyle(fontSize:20),
+                        ),
                         const SizedBox(
-                          height: 30,
+                          height: 50,
                         ),
                       ], //CHILDREN COLUMN TAMPILAN
                     ); //CARD LISTVIEWBUILDER
