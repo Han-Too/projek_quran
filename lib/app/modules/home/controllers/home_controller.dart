@@ -21,7 +21,7 @@ class HomeController extends GetxController {
 
 
 
-  print(data);
+  // print(data);
   // Surah surahAnnas = Surah.fromJson(data[113]);
 
 

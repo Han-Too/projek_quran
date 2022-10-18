@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/surah.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -38,7 +39,9 @@ class HomeView extends GetView<HomeController> {
               leading: CircleAvatar(
                 child: Text("${surah.number}"),
               ),
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(Routes.DETAIL_SURAH, arguments: surah);
+              },
               title:  Text("${surah.name?.transliteration?.id}"),
               subtitle: Text("${surah.numberOfVerses} Ayat | ${surah.revelation?.id}"),
               trailing: Text("${surah.name?.short}"),
