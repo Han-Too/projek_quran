@@ -48,7 +48,7 @@ void main() async {
   Map<String, dynamic> data = (json.decode(res.body) as Map<String, dynamic>)["data"];  
   
   DetailSurah tes =  DetailSurah.fromJson(data);
-  print(tes.preBismillah);
+  // print(tes.preBismillah);
 
   return DetailSurah.fromJson(data);
   }
