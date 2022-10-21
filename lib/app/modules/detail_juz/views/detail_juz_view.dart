@@ -39,7 +39,7 @@ class DetailJuzView extends GetView<DetailJuzController> {
                 controller.index++;
               }
             }
-
+            
             return Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(

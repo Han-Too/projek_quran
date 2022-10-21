@@ -25,33 +25,33 @@ class DetailSurahView extends GetView<DetailSurahController> {
           padding: const EdgeInsets.all(20),
           children: [
             GestureDetector(
-              onTap: ()=> Get.defaultDialog(
-                titlePadding: const EdgeInsets.only(top:30),
-                title: ("Tafsir Surah ${surah.name?.transliteration?.id}").toUpperCase(),
-                titleStyle: const TextStyle(fontWeight: FontWeight.bold, color: appBlue),
+              onTap: () => Get.defaultDialog(
+                titlePadding: const EdgeInsets.only(top: 30),
+                title: ("Tafsir Surah ${surah.name?.transliteration?.id}")
+                    .toUpperCase(),
+                titleStyle: const TextStyle(
+                    fontWeight: FontWeight.bold, color: appBlue),
                 // ignore: avoid_unnecessary_containers
                 contentPadding: const EdgeInsets.all(20),
                 content: Container(
-                  padding: const EdgeInsets.only(top:10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     // ignore: unnecessary_string_interpolations
                     "${surah.tafsir?.id ?? 'Tidak ada Tafsir Surah'}",
                     textAlign: TextAlign.justify,
                   ),
-                )
-              ,
-
+                ),
               ),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: const LinearGradient(
-                      end: Alignment.topCenter,
-                      begin: Alignment.bottomCenter,
-                      colors: [
-                      appBatas,
-                      appBlue,
-                    ])),
+                        end: Alignment.topCenter,
+                        begin: Alignment.bottomCenter,
+                        colors: [
+                          appBatas,
+                          appBlue,
+                        ])),
                 // color: appBlue,
                 // shape: const RoundedRectangleBorder(
                 //   borderRadius: BorderRadius.all(
@@ -63,7 +63,8 @@ class DetailSurahView extends GetView<DetailSurahController> {
                   child: Column(
                     children: [
                       Text(
-                        surah.name?.transliteration?.id?.toUpperCase() ?? 'error',
+                        surah.name?.transliteration?.id?.toUpperCase() ??
+                            'error',
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -147,23 +148,71 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
                                         image: AssetImage(
-                                            "assets/images/batas.png",),
-                                            fit: BoxFit.contain,
+                                          "assets/images/batas.png",
+                                        ),
+                                        fit: BoxFit.contain,
                                       )),
                                       child: Center(
-                                          child: Text("${index+1}",style: const TextStyle(color: appDarkBlue),),),
+                                        child: Text(
+                                          "${index + 1}",
+                                          style: const TextStyle(
+                                              color: appDarkBlue),
+                                        ),
+                                      ),
                                     ),
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(
-                                                Icons.bookmark_add_outlined, color: appDarkBlue,)),
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(Icons.play_arrow, color: appDarkBlue)),
-                                      ],
-                                    ), //ROW ICON
+                                    Obx(
+                                      () => Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: const Icon(
+                                                Icons.bookmark_add_outlined,
+                                                color: appDarkBlue,
+                                              )),
+                                          (controller.kondisiAudio.value ==
+                                                  "stop")
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller.playAudio(
+                                                        ayat?.audio?.primary);
+                                                  },
+                                                  icon: const Icon(
+                                                      Icons.play_arrow,
+                                                      color: appDarkBlue))
+                                              : Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    (controller.kondisiAudio.value ==
+                                                  "playing") ? IconButton(
+                                                        onPressed: () {
+                                                          controller.pauseAudio();
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.pause,
+                                                            color:
+                                                                appDarkBlue)
+                                                                ) : IconButton(
+                                                        onPressed: () {
+                                                          controller.resumeAudio();
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.play_arrow,
+                                                            color:
+                                                                appDarkBlue)
+                                                                ),
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          controller.stopAudio();
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.stop,
+                                                            color: appDarkBlue))
+                                                  ],
+                                                ),
+                                        ],
+                                      ),
+                                    ) //ROW ICON
                                   ] //CHILDREN ROW AWAL
                                   ), //ROW AWAL
                             ), //ROW DALEM CARD DALEM BUILDER
@@ -172,11 +221,12 @@ class DetailSurahView extends GetView<DetailSurahController> {
                             height: 20,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left:10),
+                            padding: const EdgeInsets.only(left: 10),
                             child: Text(
                               "${ayat!.text?.arab}",
                               textAlign: TextAlign.end,
-                              style: const TextStyle(fontSize: 30, color: appDarkBlue),
+                              style: const TextStyle(
+                                  fontSize: 30, color: appDarkBlue),
                             ),
                           ),
                           const SizedBox(
@@ -186,7 +236,9 @@ class DetailSurahView extends GetView<DetailSurahController> {
                             "${ayat.text?.transliteration?.en}",
                             textAlign: TextAlign.left,
                             style: const TextStyle(
-                                fontSize: 15, fontStyle: FontStyle.italic, color: appLightBlue),
+                                fontSize: 15,
+                                fontStyle: FontStyle.italic,
+                                color: appLightBlue),
                           ),
                           const SizedBox(
                             height: 25,
@@ -194,7 +246,8 @@ class DetailSurahView extends GetView<DetailSurahController> {
                           Text(
                             "${ayat.translation?.id}",
                             textAlign: TextAlign.justify,
-                            style: const TextStyle(fontSize: 15, color: Colors.black),
+                            style: const TextStyle(
+                                fontSize: 15, color: Colors.black),
                           ),
                           const SizedBox(
                             height: 50,
