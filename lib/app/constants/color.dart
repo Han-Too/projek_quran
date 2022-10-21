@@ -7,6 +7,7 @@ const appBlue1 = Color(0xFF4B45F2);
 const appBlue2 = Color(0xFFA2A5D8);
 const appWhite = Color(0xFFFAF8FC);
 const appOrange = Color(0xFFE6704A);
+const appBatas = Color(0xFF61BBF3);
 
 ThemeData appLight = ThemeData(
   primaryColor: appBlue,

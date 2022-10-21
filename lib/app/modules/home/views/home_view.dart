@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:quran_projek/app/constants/color.dart';
 
 import '../../../data/models/surah.dart';
+import '../../../data/models/juz.dart' as juz;
+
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -21,7 +23,6 @@ class HomeView extends GetView<HomeController> {
               icon: const Icon(Icons.search))
         ],
       ),
-
       body: DefaultTabController(
         length: 3,
         child: Padding(
@@ -30,11 +31,8 @@ class HomeView extends GetView<HomeController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Assalamualaikum",
+                "Assalamualaikum,",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
@@ -120,77 +118,173 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const TabBar(
-                indicatorColor: appDarkBlue, 
-                labelColor: appDarkBlue,
-                unselectedLabelColor: appLightBlue,
-                tabs: [
-                Tab(
-                text: "Surah",
-              
-                ),
-                Tab(
-                text: "Juz",
-              
-                ),
-                Tab(
-                text: "Bookmark",
-              
-                )
-              ]
-              ),
+                  indicatorColor: appDarkBlue,
+                  labelColor: appDarkBlue,
+                  unselectedLabelColor: appLightBlue,
+                  tabs: [
+                    Tab(
+                      text: "Surah",
+                    ),
+                    Tab(
+                      text: "Juz",
+                    ),
+                    Tab(
+                      text: "Bookmark",
+                    )
+                  ]),
               Expanded(
                 child: TabBarView(
                   children: [
-/////////////////////////////////////////////////////////  
+/////////////////////////////////////////////////////////
 
-      FutureBuilder<List<Surah>>(
-        future: controller.getAllSurah(),
-        builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting){
-          return const Center(
-            child : CircularProgressIndicator(),
-          );
-        }
-        if(!snapshot.hasData) {
-          return const Center(
-            child: Text("Tidak Ada Data Bro"),
-          );
-        }
-        // print(snapshot.data);
+                    FutureBuilder<List<Surah>>( 
+                        future: controller.getAllSurah(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: Text("Tidak Ada Data Bro"),
+                            );
+                          }
+                          // print(snapshot.data);
 
-        return ListView.builder(
-          itemCount: snapshot.data?.length,
-          itemBuilder: (context, index) {
+                          return ListView.builder(
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                Surah surah = snapshot.data![index];
+                                return ListTile(
+                                  leading: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/batas.png"),
+                                    )),
+                                    child:
+                                        Center(child: Text("${surah.number}")),
+                                  ),
 
-            Surah surah= snapshot.data![index];
-            return ListTile(
-            leading: Container(
-              height: 50,
-              width: 50,
-              decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/images/batas.png"),)
-              ),
-              child: Center(child: Text("${surah.number}")),
-
-            ),
-            
-            // CircleAvatar(
-            //   child: Text("${surah.number}"),
-            // ),
-            onTap: (){
-              Get.toNamed(Routes.DETAIL_SURAH, arguments: surah);
-            },
-            title:  Text("${surah.name?.transliteration?.id}", style: const TextStyle(fontWeight: FontWeight.bold, color: appDarkBlue),),
-            subtitle: Text("${surah.numberOfVerses} Ayat | ${surah.revelation?.id}", style: const TextStyle( color: Colors.grey),),
-            trailing: Text("${surah.name?.short}"),
-          );
-          }
-        );
-        }),
+                                  // CircleAvatar(
+                                  //   child: Text("${surah.number}"),
+                                  // ),
+                                  onTap: () {
+                                    Get.toNamed(Routes.DETAIL_SURAH,
+                                        arguments: surah);
+                                  },
+                                  title: Text(
+                                    "${surah.name?.transliteration?.id}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: appDarkBlue),
+                                  ),
+                                  subtitle: Text(
+                                    "${surah.numberOfVerses} Ayat | ${surah.revelation?.id}",
+                                    style: const TextStyle(color: Colors.grey),
+                                  ),
+                                  trailing: Text("${surah.name?.short}"),
+                                );
+                              });
+                        }),
 
 /////////////////////////////////////////////////////////
 
-                    const Center(child: Text("Page 1")),
+                    FutureBuilder<List<juz.Juz>>(
+                      future: controller.getAllJuz(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: Text("Tidak Ada Data Bro"),
+                            );
+                          } 
+
+                          return ListView.builder(
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (context, index) {
+                                juz.Juz detailJuz = snapshot.data![index];
+                                
+                                
+                                String nameStart = detailJuz.juzStartInfo?.split(" - ").first ?? "";
+                                String nameEnd = detailJuz.juzEndInfo?.split(" - ").first ?? "";
+                                
+                                List<Surah> allSurahinJuz = [];
+                                List<Surah> rawAllSurahinJuz = [];
+                                
+                                
+                                for (Surah item  in controller.allSurah) {
+                                  rawAllSurahinJuz.add(item);
+                                  if(item.name!.transliteration!.id == nameEnd){
+                                    break;
+                                  }
+                                }
+
+                                for (Surah item  in rawAllSurahinJuz.reversed.toList()) {
+                                  allSurahinJuz.add(item);
+                                  if(item.name!.transliteration!.id == nameStart){
+                                    break;
+                                  }
+                                }
+
+                                return ListTile(
+                                  leading: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/batas.png"),
+                                    )
+                                    ),
+                                    child:
+                                        Center(child: Text("${index+1}")),
+                                  ),
+                                  onTap: () {
+                                    Get.toNamed(Routes.DETAIL_JUZ,
+                                        arguments: {
+                                          "juz": detailJuz,
+                                          "surah": allSurahinJuz.reversed.toList(),
+                                  }
+                                  );
+                                  },
+                                  title: Text(
+                                    "Juz ${index+1}",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: appDarkBlue),
+                                  ),
+                                  isThreeLine: true,
+                                  subtitle: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Mulai Dari${detailJuz.juzStartInfo}",
+                                        style: const TextStyle(color: Colors.grey),
+                                      ),
+                                      Text(
+                                        "Sampai ${detailJuz.juzEndInfo}",
+                                        style: const TextStyle(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Text("${detailJuz.totalVerses} Ayat"),
+                                );
+                              }
+                              );
+                  
+                  }            
+              ),
 
 ////////////////////////////////////////////////////////////
 

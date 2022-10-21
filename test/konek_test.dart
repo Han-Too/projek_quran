@@ -1,7 +1,4 @@
-import 'dart:convert';
 
-import 'package:http/http.dart' as http;
-import 'package:quran_projek/app/data/models/detail_surah.dart';
 
 void main() async {
   // Uri url = Uri.parse("https://api.quran.gading.dev/surah");
@@ -41,18 +38,41 @@ void main() async {
   // print(annas.verses![1].text!.arab);
 
   // TES PREBISMILLAH IS NULL
-  Future<DetailSurah> getDetailSurah(String id) async {
-    Uri url = Uri.parse("https://api.quran.gading.dev/surah/$id");
-    var res = await http.get(url);                                           
+  // Future<DetailSurah> getDetailSurah(String id) async {
+  //   Uri url = Uri.parse("https://api.quran.gading.dev/surah/$id");
+  //   var res = await http.get(url);                                           
 
-  Map<String, dynamic> data = (json.decode(res.body) as Map<String, dynamic>)["data"];  
+  // Map<String, dynamic> data = (json.decode(res.body) as Map<String, dynamic>)["data"];  
   
-  DetailSurah tes =  DetailSurah.fromJson(data);
-  // print(tes.preBismillah);
+  // DetailSurah tes =  DetailSurah.fromJson(data);
+  // // print(tes.preBismillah);
 
-  return DetailSurah.fromJson(data);
-  }
+  // return DetailSurah.fromJson(data);
+  // }
 
-  await getDetailSurah(1.toString());
+  // await getDetailSurah(1.toString());
+
+// TES KONEKSI JUZ
+
+
+// ignore: unused_element
+// Future<List<Juz>> getAllJuz() async {
+//   List<Juz> allJuz = [];
+  
+//   for(int i=1; i<=30; i++){
+//     Uri url = Uri.parse("https://api.quran.gading.dev/juz/$i");
+//     var res = await http.get(url);
+//     Map<String,dynamic> data = (json.decode(res.body) as Map<String, dynamic>)["data"];
+
+//     Juz juz = Juz.fromJson(data);
+//     allJuz.add(juz);
+//     }
+  
+//   return allJuz[1];
+//     }
+
+
+
 
 }
+

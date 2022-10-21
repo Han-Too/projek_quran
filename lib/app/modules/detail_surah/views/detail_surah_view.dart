@@ -32,24 +32,32 @@ class DetailSurahView extends GetView<DetailSurahController> {
                 // ignore: avoid_unnecessary_containers
                 contentPadding: const EdgeInsets.all(20),
                 content: Container(
-                  // padding: const EdgeInsets.only(top:10),
+                  padding: const EdgeInsets.only(top:10),
                   child: Text(
                     // ignore: unnecessary_string_interpolations
                     "${surah.tafsir?.id ?? 'Tidak ada Tafsir Surah'}",
                     textAlign: TextAlign.justify,
                   ),
                 )
-                // middleText: surah.tafsir?.id ?? 'Tidak ada Tafsir Surah ',
-                // middleTextStyle: const TextStyle(fontSize:14),
+              ,
 
               ),
-              child: Card(
-                color: appBlue,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-                ),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: const LinearGradient(
+                      end: Alignment.topCenter,
+                      begin: Alignment.bottomCenter,
+                      colors: [
+                      appBatas,
+                      appBlue,
+                    ])),
+                // color: appBlue,
+                // shape: const RoundedRectangleBorder(
+                //   borderRadius: BorderRadius.all(
+                //     Radius.circular(30),
+                //   ),
+                // ),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -121,7 +129,11 @@ class DetailSurahView extends GetView<DetailSurahController> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Card(
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: appBatas,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
@@ -135,10 +147,11 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
                                         image: AssetImage(
-                                            "assets/images/batas.png"),
+                                            "assets/images/batas.png",),
+                                            fit: BoxFit.contain,
                                       )),
                                       child: Center(
-                                          child: Text("${index+1}")),
+                                          child: Text("${index+1}",style: const TextStyle(color: appDarkBlue),),),
                                     ),
                                     Row(
                                       children: [
@@ -158,10 +171,13 @@ class DetailSurahView extends GetView<DetailSurahController> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            "${ayat!.text?.arab}",
-                            textAlign: TextAlign.end,
-                            style: const TextStyle(fontSize: 30, color: appDarkBlue),
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Text(
+                              "${ayat!.text?.arab}",
+                              textAlign: TextAlign.end,
+                              style: const TextStyle(fontSize: 30, color: appDarkBlue),
+                            ),
                           ),
                           const SizedBox(
                             height: 5,
