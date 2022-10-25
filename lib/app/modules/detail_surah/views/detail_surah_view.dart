@@ -51,7 +51,9 @@ class DetailSurahView extends GetView<DetailSurahController> {
                         colors: [
                           appBatas,
                           appBlue,
-                        ])),
+                        ]
+                        )
+                        ),
                 // color: appBlue,
                 // shape: const RoundedRectangleBorder(
                 //   borderRadius: BorderRadius.all(
@@ -160,21 +162,56 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                         ),
                                       ),
                                     ),
-                                    Obx(
-                                      () => Row(
+                                    GetBuilder<DetailSurahController>(
+                                      builder: (c) => Row(
                                         children: [
                                           IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Get.defaultDialog(
+                                                  title: "Tafsir Ayat",
+                                                  middleText: "${ayat?.tafsir?.id?.short}",
+                                                  actions: [
+                                                      
+                                                  ]
+                                                );
+                                              },
+                                              icon: const Icon(
+                                                Icons.info_outline,
+                                                color: appDarkBlue,
+                                              )),
+                                          IconButton(
+                                              onPressed: () {
+                                                Get.defaultDialog(
+                                                  title: "BOOKMARK",
+                                                  middleText: "Pilih Bookmark",
+                                                  actions: [
+                                                      ElevatedButton(
+                                                        onPressed: (){},
+                                                        style: ElevatedButton.styleFrom(
+                                                          backgroundColor: appDarkBlue,
+                                                          foregroundColor: appWhite,
+                                                        ), 
+                                                        child: const Text("LAST READ"),
+                                                        ),
+                                                        ElevatedButton(
+                                                        onPressed: (){},
+                                                        style: ElevatedButton.styleFrom(
+                                                          backgroundColor: appDarkBlue,
+                                                          foregroundColor: appWhite,
+                                                        ), 
+                                                        child: const Text("BOOKMARK"),
+                                                        ),
+                                                  ]
+                                                );
+                                              },
                                               icon: const Icon(
                                                 Icons.bookmark_add_outlined,
                                                 color: appDarkBlue,
                                               )),
-                                          (controller.kondisiAudio.value ==
-                                                  "stop")
+                                          (ayat?.kondisiAudio == "stop")
                                               ? IconButton(
                                                   onPressed: () {
-                                                    controller.playAudio(
-                                                        ayat?.audio?.primary);
+                                                    c.playAudio(ayat!);
                                                   },
                                                   icon: const Icon(
                                                       Icons.play_arrow,
@@ -183,10 +220,10 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   children: [
-                                                    (controller.kondisiAudio.value ==
+                                                    (ayat?.kondisiAudio ==
                                                   "playing") ? IconButton(
                                                         onPressed: () {
-                                                          controller.pauseAudio();
+                                                          c.pauseAudio(ayat!);
                                                         },
                                                         icon: const Icon(
                                                             Icons.pause,
@@ -194,7 +231,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                                 appDarkBlue)
                                                                 ) : IconButton(
                                                         onPressed: () {
-                                                          controller.resumeAudio();
+                                                          c.resumeAudio(ayat!);
                                                         },
                                                         icon: const Icon(
                                                             Icons.play_arrow,
@@ -203,7 +240,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                                 ),
                                                     IconButton(
                                                         onPressed: () {
-                                                          controller.stopAudio();
+                                                          c.stopAudio(ayat!);
                                                         },
                                                         icon: const Icon(
                                                             Icons.stop,
@@ -212,7 +249,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                 ),
                                         ],
                                       ),
-                                    ) //ROW ICON
+                                      )
                                   ] //CHILDREN ROW AWAL
                                   ), //ROW AWAL
                             ), //ROW DALEM CARD DALEM BUILDER
@@ -234,7 +271,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                           ),
                           Text(
                             "${ayat.text?.transliteration?.en}",
-                            textAlign: TextAlign.left,
+                            textAlign: TextAlign.end,
                             style: const TextStyle(
                                 fontSize: 15,
                                 fontStyle: FontStyle.italic,
@@ -245,7 +282,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                           ),
                           Text(
                             "${ayat.translation?.id}",
-                            textAlign: TextAlign.justify,
+                            textAlign: TextAlign.left,
                             style: const TextStyle(
                                 fontSize: 15, color: Colors.black),
                           ),

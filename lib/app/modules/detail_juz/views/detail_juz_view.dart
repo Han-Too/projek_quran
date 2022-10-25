@@ -37,6 +37,7 @@ class DetailJuzView extends GetView<DetailJuzController> {
             if (index != 0) {
               if (ayat.number?.inSurah == 1) {
                 controller.index++;
+                
               }
             }
             
@@ -56,6 +57,7 @@ class DetailJuzView extends GetView<DetailJuzController> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -94,16 +96,18 @@ class DetailJuzView extends GetView<DetailJuzController> {
                             ),
                             Row(
                               children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.bookmark_add_outlined,
-                                      color: appDarkBlue,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.play_arrow,
-                                        color: appDarkBlue)),
+                              
+                                Text(
+                                  allSurahinThisJuz[controller.index]
+                                          .name
+                                          ?.short ??
+                                      '',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: appWhite,
+                                  ),
+                                ),
+                                const SizedBox(width: 10,)
                               ],
                             ), //ROW ICON
                           ] //CHILDREN ROW AWAL
@@ -126,7 +130,7 @@ class DetailJuzView extends GetView<DetailJuzController> {
                   ),
                   Text(
                     "${ayat.text?.transliteration?.en}",
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.end,
                     style: const TextStyle(
                         fontSize: 15,
                         fontStyle: FontStyle.italic,
