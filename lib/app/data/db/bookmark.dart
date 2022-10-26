@@ -18,7 +18,7 @@ class DatabaseManager {
       _db = await _initDB();
     }
     
-    return _db!;
+    return db;
   }
 
   Future _initDB() async {
