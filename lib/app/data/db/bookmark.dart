@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class DatabaseManager {
@@ -12,6 +13,7 @@ class DatabaseManager {
   Database? _db;
 
   Future<Database> get db async {
+    // ignore: unnecessary_null_comparison
     if(db == null){
       _db = await _initDB();
     }
@@ -36,7 +38,7 @@ class DatabaseManager {
               ayat INTEGER NOT NULL,
               juz INTEGER NOT NULL,
               via TEXT NOT NULL,
-              index_ayat TEXT NOT NULL,
+              index_ayat INTEGER NOT NULL,
               last_read INTEGER DEFAULT 0
               
             )

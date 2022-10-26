@@ -51,9 +51,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                         colors: [
                           appBatas,
                           appBlue,
-                        ]
-                        )
-                        ),
+                        ])),
                 // color: appBlue,
                 // shape: const RoundedRectangleBorder(
                 //   borderRadius: BorderRadius.all(
@@ -167,12 +165,50 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                         children: [
                                           IconButton(
                                               onPressed: () {
-                                                Get.defaultDialog(
-                                                  title: "Tafsir Ayat",
-                                                  middleText: "${ayat?.tafsir?.id?.short}",
-                                                  actions: [
-                                                      
-                                                  ]
+                                                // Get.defaultDialog(
+                                                //   title: "Tafsir Ayat",
+                                                //   middleText: "${ayat?.tafsir?.id?.short}",
+                                                //   actions: [
+
+                                                //   ]
+                                                // );
+
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) => AlertDialog(
+                                                    title: const Text("Tafsir Ayat"),
+                                                    scrollable : true,
+                                                    shape:
+                                                        const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(12.0),
+                                                      ),
+                                                    ),
+                                                    content: Builder(
+                                                      builder: (context) {
+                                                        var height =
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height;
+                                                        var width =
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width;
+
+                                                        return SizedBox(
+                                                          height: height -10,
+                                                          width: width -10,
+                                                          child: Center(
+                                                            child: Text(
+                                                                "${ayat?.tafsir?.id?.short}",textAlign: TextAlign.justify,),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
                                                 );
                                               },
                                               icon: const Icon(
@@ -182,27 +218,41 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                           IconButton(
                                               onPressed: () {
                                                 Get.defaultDialog(
-                                                  title: "BOOKMARK",
-                                                  middleText: "Pilih Bookmark",
-                                                  actions: [
+                                                    title: "BOOKMARK",
+                                                    middleText:
+                                                        "Pilih Bookmark",
+                                                    actions: [
+                                                      
                                                       ElevatedButton(
-                                                        onPressed: (){},
-                                                        style: ElevatedButton.styleFrom(
-                                                          backgroundColor: appDarkBlue,
-                                                          foregroundColor: appWhite,
-                                                        ), 
-                                                        child: const Text("LAST READ"),
+                                                        onPressed: () {
+                                                          c.addBookmark(true,snapshot.data!, ayat!,index);
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              appDarkBlue,
+                                                          foregroundColor:
+                                                              appWhite,
                                                         ),
-                                                        ElevatedButton(
-                                                        onPressed: (){},
-                                                        style: ElevatedButton.styleFrom(
-                                                          backgroundColor: appDarkBlue,
-                                                          foregroundColor: appWhite,
-                                                        ), 
-                                                        child: const Text("BOOKMARK"),
+                                                        child: const Text(
+                                                            "LAST READ"),
+                                                      ),
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          c.addBookmark(false,snapshot.data!, ayat!,index);
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              appDarkBlue,
+                                                          foregroundColor:
+                                                              appWhite,
                                                         ),
-                                                  ]
-                                                );
+                                                        child: const Text(
+                                                            "BOOKMARK"),
+                                                      ),
+                                                    ]
+                                                    );
                                               },
                                               icon: const Icon(
                                                 Icons.bookmark_add_outlined,
@@ -221,23 +271,26 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                       MainAxisSize.min,
                                                   children: [
                                                     (ayat?.kondisiAudio ==
-                                                  "playing") ? IconButton(
-                                                        onPressed: () {
-                                                          c.pauseAudio(ayat!);
-                                                        },
-                                                        icon: const Icon(
-                                                            Icons.pause,
-                                                            color:
-                                                                appDarkBlue)
-                                                                ) : IconButton(
-                                                        onPressed: () {
-                                                          c.resumeAudio(ayat!);
-                                                        },
-                                                        icon: const Icon(
-                                                            Icons.play_arrow,
-                                                            color:
-                                                                appDarkBlue)
-                                                                ),
+                                                            "playing")
+                                                        ? IconButton(
+                                                            onPressed: () {
+                                                              c.pauseAudio(
+                                                                  ayat!);
+                                                            },
+                                                            icon: const Icon(
+                                                                Icons.pause,
+                                                                color:
+                                                                    appDarkBlue))
+                                                        : IconButton(
+                                                            onPressed: () {
+                                                              c.resumeAudio(
+                                                                  ayat!);
+                                                            },
+                                                            icon: const Icon(
+                                                                Icons
+                                                                    .play_arrow,
+                                                                color:
+                                                                    appDarkBlue)),
                                                     IconButton(
                                                         onPressed: () {
                                                           c.stopAudio(ayat!);
@@ -249,7 +302,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                 ),
                                         ],
                                       ),
-                                      )
+                                    )
                                   ] //CHILDREN ROW AWAL
                                   ), //ROW AWAL
                             ), //ROW DALEM CARD DALEM BUILDER

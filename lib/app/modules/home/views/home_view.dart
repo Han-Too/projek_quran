@@ -49,6 +49,7 @@ class HomeView extends GetView<HomeController> {
                     splashColor: const Color(0xB5FF1D99),
                     borderRadius: BorderRadius.circular(20),
                     onTap: () => Get.toNamed(Routes.LAST_READ),
+                    // ignore: avoid_unnecessary_containers
                     child: Container(
                       // height: 150,
                       // width: Get.width,
