@@ -10,6 +10,8 @@ import '../modules/introduction/bindings/introduction_binding.dart';
 import '../modules/introduction/views/introduction_view.dart';
 import '../modules/last_read/bindings/last_read_binding.dart';
 import '../modules/last_read/views/last_read_view.dart';
+import '../modules/quote_screen/bindings/quote_screen_binding.dart';
+import '../modules/quote_screen/views/quote_screen_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
 
@@ -43,13 +45,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LAST_READ,
-      page: () =>  const LastReadView(),
+      page: () => const LastReadView(),
       binding: LastReadBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_JUZ,
-      page: () =>  DetailJuzView(),
+      page: () => DetailJuzView(),
       binding: DetailJuzBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUOTE_SCREEN,
+      page: () => const QuoteScreenView(),
+      binding: QuoteScreenBinding(),
     ),
   ];
 }

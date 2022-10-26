@@ -9,6 +9,7 @@ abstract class Routes {
   static const SEARCH = _Paths.SEARCH;
   static const LAST_READ = _Paths.LAST_READ;
   static const DETAIL_JUZ = _Paths.DETAIL_JUZ;
+  static const QUOTE_SCREEN = _Paths.QUOTE_SCREEN;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const SEARCH = '/search';
   static const LAST_READ = '/last-read';
   static const DETAIL_JUZ = '/detail-juz';
+  static const QUOTE_SCREEN = '/quote-screen';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:quran_projek/app/constants/color.dart';
+import 'package:quran_projek/app/modules/home/views/navdar.dart';
 
 import '../../../data/models/surah.dart';
 import '../../../data/models/juz.dart' as juz;
@@ -23,8 +24,9 @@ class HomeView extends GetView<HomeController> {
               icon: const Icon(Icons.search))
         ],
       ),
+      drawer: DrawerWidget(),
       body: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -129,9 +131,6 @@ class HomeView extends GetView<HomeController> {
                     Tab(
                       text: "Juz",
                     ),
-                    Tab(
-                      text: "Bookmark",
-                    )
                   ]),
               Expanded(
                 child: TabBarView(
@@ -289,7 +288,24 @@ class HomeView extends GetView<HomeController> {
 
 ////////////////////////////////////////////////////////////
 
-                    const Center(child: Text("Page 1")),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     const Text("Klik untuk Quote", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    //     const SizedBox(height: 20,),
+                    //     ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //         backgroundColor: appDarkBlue,
+                    //         foregroundColor: appLightBlue,
+                    //       ),
+                    //       onPressed: (){
+                    //         Get.toNamed(Routes.QUOTE_SCREEN,);
+                    //       },
+                    //       child: const Text("Get Here",style: TextStyle(color: appWhite, fontWeight: FontWeight.bold),),
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
               )

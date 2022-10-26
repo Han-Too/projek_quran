@@ -177,51 +177,6 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                     ),
                                                   )
                                                   );
-
-                                                  // title: "Tafsir Ayat",
-                                                  // middleText: "${ayat?.tafsir?.id?.short}",
-                                                  // actions: [
-
-                                                  // ]
-                                                
-
-                                                // showDialog(
-                                                //   context: context,
-                                                //   builder: (_) => AlertDialog(
-                                                //     title: const Text("Tafsir Ayat"),
-                                                //     scrollable : true,
-                                                //     shape:
-                                                //         const RoundedRectangleBorder(
-                                                //       borderRadius:
-                                                //           BorderRadius.all(
-                                                //         Radius.circular(12.0),
-                                                //       ),
-                                                //     ),
-                                                //     content: Builder(
-                                                //       builder: (context) {
-                                                //         var height =
-                                                //             MediaQuery.of(
-                                                //                     context)
-                                                //                 .size
-                                                //                 .height;
-                                                //         var width =
-                                                //             MediaQuery.of(
-                                                //                     context)
-                                                //                 .size
-                                                //                 .width;
-
-                                                //         return SizedBox(
-                                                //           height: height -10,
-                                                //           width: width -10,
-                                                //           child: Center(
-                                                //             child: Text(
-                                                //                 "${ayat?.tafsir?.id?.short}",textAlign: TextAlign.justify,),
-                                                //           ),
-                                                //         );
-                                                //       },
-                                                //     ),
-                                                //   ),
-                                                // );
                                               },
                                               icon: const Icon(
                                                 Icons.info_outline,

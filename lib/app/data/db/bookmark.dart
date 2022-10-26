@@ -14,9 +14,9 @@ class DatabaseManager {
 
   Future<Database> get db async {
     // ignore: unnecessary_null_comparison
-    if(db == null){
-      _db = await _initDB();
-    }
+    // if(db == null){
+    //   _db = await _initDB();
+    // }
     
     return db;
   }
