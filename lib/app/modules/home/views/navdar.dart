@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quran_projek/app/modules/home/views/ayat_kursi_page.dart';
+import 'package:quran_projek/app/modules/home/views/bacaan_sholat_page.dart';
 
 import '../../../constants/color.dart';
 import '../../../routes/app_pages.dart';
@@ -21,7 +23,18 @@ class DrawerWidget extends StatelessWidget {
                 )),
           ),
           _drawerItem(
-              icon: Icons.library_books_sharp, text: 'Hadist', onTap: () {}),
+              icon: Icons.book, text: 'Ayat Kursi', onTap: () {
+                Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const AyatKursi()));
+              }),
+          _drawerItem(
+              icon: Icons.collections_bookmark, text: 'Bacaan Sholat', 
+              onTap: () {
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BacaanSholat()));
+              }),
           _drawerItem(
             icon: Icons.format_quote_rounded,
             text: 'Quotes',

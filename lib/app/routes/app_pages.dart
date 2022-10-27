@@ -4,12 +4,15 @@ import '../modules/detail_juz/bindings/detail_juz_binding.dart';
 import '../modules/detail_juz/views/detail_juz_view.dart';
 import '../modules/detail_surah/bindings/detail_surah_binding.dart';
 import '../modules/detail_surah/views/detail_surah_view.dart';
+import '../modules/doa_screen/bindings/doa_screen_binding.dart';
+import '../modules/doa_screen/views/doa_screen_view.dart';
+import '../modules/hadist_screen/bindings/hadist_screen_binding.dart';
+import '../modules/hadist_screen/views/hadist_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/ayat_kursi_page.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/introduction/bindings/introduction_binding.dart';
 import '../modules/introduction/views/introduction_view.dart';
-import '../modules/last_read/bindings/last_read_binding.dart';
-import '../modules/last_read/views/last_read_view.dart';
 import '../modules/quote_screen/bindings/quote_screen_binding.dart';
 import '../modules/quote_screen/views/quote_screen_view.dart';
 import '../modules/search/bindings/search_binding.dart';
@@ -44,11 +47,6 @@ class AppPages {
       binding: SearchBinding(),
     ),
     GetPage(
-      name: _Paths.LAST_READ,
-      page: () => const LastReadView(),
-      binding: LastReadBinding(),
-    ),
-    GetPage(
       name: _Paths.DETAIL_JUZ,
       page: () => DetailJuzView(),
       binding: DetailJuzBinding(),
@@ -58,5 +56,21 @@ class AppPages {
       page: () => const QuoteScreenView(),
       binding: QuoteScreenBinding(),
     ),
+    GetPage(
+      name: _Paths.DOA_SCREEN,
+      page: () =>  const DoaScreenView(),
+      binding: DoaScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.HADIST_SCREEN,
+      page: () => const HadistScreenView(),
+      binding: HadistScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.AYAT_KURSI,
+      page: () => const AyatKursi(),
+      binding: HomeBinding(),
+    ),
+    
   ];
 }

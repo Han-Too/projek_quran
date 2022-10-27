@@ -5,12 +5,10 @@ import 'package:http/http.dart' as http;
 
 import '../../../data/models/juz.dart';
 import '../../../data/models/surah.dart';
-import '../../../data/models/quote.dart';
 
 class HomeController extends GetxController {
 
   List<Surah> allSurah = [];
-  List<Quote> allQuote = [];
 
   Future<List<Surah>> getAllSurah() async {
     Uri url = Uri.parse("https://api.quran.gading.dev/surah");
@@ -41,18 +39,6 @@ class HomeController extends GetxController {
     return allJuz;
   }
 
-Future<List<Quote>> getAllQuote() async {
-    Uri url = Uri.parse("https://zenquotes.io/api/random");
-    var res = await http.get(url);
-    List data = (json.decode(res.body) as Map<String, dynamic>)[""];
-
-    if (data.isEmpty) {
-      return [];
-    } else {
-      allQuote = data.map((e) => Quote.fromJson(e)).toList();
-      return allQuote;
-    }
-  }
 
   
 }

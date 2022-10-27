@@ -50,7 +50,7 @@ class HomeView extends GetView<HomeController> {
                   child: InkWell(
                     splashColor: const Color(0xB5FF1D99),
                     borderRadius: BorderRadius.circular(20),
-                    onTap: () => Get.toNamed(Routes.LAST_READ),
+                    onTap: () {},
                     // ignore: avoid_unnecessary_containers
                     child: Container(
                       // height: 150,
@@ -79,15 +79,12 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 Row(
                                   children: const [
-                                    Icon(
-                                      Icons.menu_book_rounded,
-                                      color: appWhite,
-                                    ),
+                                    
                                     SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     ),
                                     Text(
-                                      "Terakhir Dibaca",
+                                      "",
                                       style: TextStyle(
                                         color: appWhite,
                                       ),
@@ -98,17 +95,17 @@ class HomeView extends GetView<HomeController> {
                                   height: 30,
                                 ),
                                 const Text(
-                                  "Surah",
+                                  "Al Quran",
                                   style: TextStyle(
                                     color: appWhite,
                                     fontSize: 25,
                                   ),
                                 ),
                                 const Text(
-                                  "Ayat",
+                                  "Terjemah Indonesia",
                                   style: TextStyle(
                                     color: appWhite,
-                                    fontSize: 20,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ],
@@ -286,26 +283,8 @@ class HomeView extends GetView<HomeController> {
                   }            
               ),
 
-////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////\
 
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.center,
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     const Text("Klik untuk Quote", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                    //     const SizedBox(height: 20,),
-                    //     ElevatedButton(
-                    //       style: ElevatedButton.styleFrom(
-                    //         backgroundColor: appDarkBlue,
-                    //         foregroundColor: appLightBlue,
-                    //       ),
-                    //       onPressed: (){
-                    //         Get.toNamed(Routes.QUOTE_SCREEN,);
-                    //       },
-                    //       child: const Text("Get Here",style: TextStyle(color: appWhite, fontWeight: FontWeight.bold),),
-                    //     )
-                    //   ],
-                    // ),
                   ],
                 ),
               )

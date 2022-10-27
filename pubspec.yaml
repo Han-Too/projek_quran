@@ -26,5 +26,8 @@ flutter:
   assets: 
     - assets/images/
     - assets/lotties/
+    - assets/json/
+    - assets/json/bacaanshalat.json
+    - assets/json/niatshalat.json
   uses-material-design: true
 

@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
-import 'package:quran_projek/app/data/db/bookmark.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../../../data/models/detail_surah.dart';
 
@@ -13,32 +11,6 @@ class DetailSurahController extends GetxController {
   // RxString kondisiAudio = "stop".obs;
   final player = AudioPlayer();
   Verse? lastVerse;
-
-  DatabaseManager database = DatabaseManager.instance;
-
-  void addBookmark(bool lastRead, DetailSurah surah,Verse ayat, int indexAyat) async {
-    Database db = await database.db;
-
-    await db.insert(
-      "bookmark",
-      {
-        // ignore: unnecessary_string_interpolations
-        "surah" : "${surah.name!.transliteration!.id!}",
-        "ayat" : ayat.number!.inSurah!,
-        "juz" : ayat.meta!.juz!,
-        "via" : "surah",
-        "index_ayat" : indexAyat,
-        "last_read" : lastRead == true ? 1 : 0,
-      },
-    );
-  
-  Get.back();
-  Get.snackbar("Berhasil", "Berhasil Menambahkan Bookmark");
-
-  var data = await db.query("bookmark");
-  print(data);
-  }
-
 
   Future<DetailSurah> getDetailSurah(String id) async {
     Uri url = Uri.parse("https://api.quran.gading.dev/surah/$id");

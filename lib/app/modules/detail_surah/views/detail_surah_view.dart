@@ -182,49 +182,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                                                 Icons.info_outline,
                                                 color: appDarkBlue,
                                               )),
-                                          IconButton(
-                                              onPressed: () {
-                                                Get.defaultDialog(
-                                                    title: "BOOKMARK",
-                                                    middleText:
-                                                        "Pilih Bookmark",
-                                                    actions: [
-                                                      
-                                                      ElevatedButton(
-                                                        onPressed: () {
-                                                          c.addBookmark(true,snapshot.data!, ayat!,index);
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          backgroundColor:
-                                                              appDarkBlue,
-                                                          foregroundColor:
-                                                              appWhite,
-                                                        ),
-                                                        child: const Text(
-                                                            "LAST READ"),
-                                                      ),
-                                                      ElevatedButton(
-                                                        onPressed: () {
-                                                          c.addBookmark(false,snapshot.data!, ayat!,index);
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          backgroundColor:
-                                                              appDarkBlue,
-                                                          foregroundColor:
-                                                              appWhite,
-                                                        ),
-                                                        child: const Text(
-                                                            "BOOKMARK"),
-                                                      ),
-                                                    ]
-                                                    );
-                                              },
-                                              icon: const Icon(
-                                                Icons.bookmark_add_outlined,
-                                                color: appDarkBlue,
-                                              )),
+                                        
                                           (ayat?.kondisiAudio == "stop")
                                               ? IconButton(
                                                   onPressed: () {

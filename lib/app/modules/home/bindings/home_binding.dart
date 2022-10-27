@@ -10,3 +10,12 @@ class HomeBinding extends Bindings {
     );
   }
 }
+
+class AyatKursiBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+    );
+  }
+}
