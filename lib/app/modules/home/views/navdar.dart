@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran_projek/app/modules/home/views/ayat_kursi_page.dart';
 import 'package:quran_projek/app/modules/home/views/bacaan_sholat_page.dart';
+import 'package:quran_projek/app/modules/home/views/doa.dart';
 
 import '../../../constants/color.dart';
 import '../../../routes/app_pages.dart';
@@ -35,6 +36,16 @@ class DrawerWidget extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => const BacaanSholat()));
               }),
+              
+          _drawerItem(
+              icon: Icons.my_library_books_rounded, text: 'Doa Harian', 
+              onTap: () {
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BacaanDoa()));
+              }),
+              
           _drawerItem(
             icon: Icons.format_quote_rounded,
             text: 'Quotes',

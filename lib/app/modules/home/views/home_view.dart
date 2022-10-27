@@ -20,8 +20,20 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () => Get.toNamed(Routes.SEARCH),
-              icon: const Icon(Icons.search))
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => const AlertDialog(
+                          title: Center(child: Text("Perhatian")),
+                          content: SingleChildScrollView(
+                            child: Text(
+                              "Developer Meminta Maaf Apabila Terdapat Bug Pada Aplikasi Ini ~Developer ♥♥♥"
+                              ,textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ));
+              },
+              icon: const Icon(Icons.question_mark_sharp))
         ],
       ),
       drawer: DrawerWidget(),
@@ -79,7 +91,6 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 Row(
                                   children: const [
-                                    
                                     SizedBox(
                                       width: 5,
                                     ),
@@ -134,7 +145,7 @@ class HomeView extends GetView<HomeController> {
                   children: [
 /////////////////////////////////////////////////////////
 
-                    FutureBuilder<List<Surah>>( 
+                    FutureBuilder<List<Surah>>(
                         future: controller.getAllSurah(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
@@ -192,9 +203,9 @@ class HomeView extends GetView<HomeController> {
 /////////////////////////////////////////////////////////
 
                     FutureBuilder<List<juz.Juz>>(
-                      future: controller.getAllJuz(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
+                        future: controller.getAllJuz(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return const Center(
                               child: CircularProgressIndicator(),
@@ -204,31 +215,37 @@ class HomeView extends GetView<HomeController> {
                             return const Center(
                               child: Text("Tidak Ada Data Bro"),
                             );
-                          } 
+                          }
 
                           return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (context, index) {
                                 juz.Juz detailJuz = snapshot.data![index];
-                                
-                                
-                                String nameStart = detailJuz.juzStartInfo?.split(" - ").first ?? "";
-                                String nameEnd = detailJuz.juzEndInfo?.split(" - ").first ?? "";
-                                
+
+                                String nameStart = detailJuz.juzStartInfo
+                                        ?.split(" - ")
+                                        .first ??
+                                    "";
+                                String nameEnd =
+                                    detailJuz.juzEndInfo?.split(" - ").first ??
+                                        "";
+
                                 List<Surah> allSurahinJuz = [];
                                 List<Surah> rawAllSurahinJuz = [];
-                                
-                                
-                                for (Surah item  in controller.allSurah) {
+
+                                for (Surah item in controller.allSurah) {
                                   rawAllSurahinJuz.add(item);
-                                  if(item.name!.transliteration!.id == nameEnd){
+                                  if (item.name!.transliteration!.id ==
+                                      nameEnd) {
                                     break;
                                   }
                                 }
 
-                                for (Surah item  in rawAllSurahinJuz.reversed.toList()) {
+                                for (Surah item
+                                    in rawAllSurahinJuz.reversed.toList()) {
                                   allSurahinJuz.add(item);
-                                  if(item.name!.transliteration!.id == nameStart){
+                                  if (item.name!.transliteration!.id ==
+                                      nameStart) {
                                     break;
                                   }
                                 }
@@ -241,50 +258,46 @@ class HomeView extends GetView<HomeController> {
                                         image: DecorationImage(
                                       image:
                                           AssetImage("assets/images/batas.png"),
-                                    )
-                                    ),
-                                    child:
-                                        Center(child: Text("${index+1}")),
+                                    )),
+                                    child: Center(child: Text("${index + 1}")),
                                   ),
                                   onTap: () {
-                                    Get.toNamed(Routes.DETAIL_JUZ,
-                                        arguments: {
-                                          "juz": detailJuz,
-                                          "surah": allSurahinJuz.reversed.toList(),
-                                  }
-                                  );
+                                    Get.toNamed(Routes.DETAIL_JUZ, arguments: {
+                                      "juz": detailJuz,
+                                      "surah": allSurahinJuz.reversed.toList(),
+                                    });
                                   },
                                   title: Text(
-                                    "Juz ${index+1}",
+                                    "Juz ${index + 1}",
                                     style: const TextStyle(
-                                      fontSize: 20,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: appDarkBlue),
                                   ),
                                   isThreeLine: true,
                                   subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Mulai Dari${detailJuz.juzStartInfo}",
-                                        style: const TextStyle(color: Colors.grey),
+                                        style:
+                                            const TextStyle(color: Colors.grey),
                                       ),
                                       Text(
                                         "Sampai ${detailJuz.juzEndInfo}",
-                                        style: const TextStyle(color: Colors.grey),
+                                        style:
+                                            const TextStyle(color: Colors.grey),
                                       ),
                                     ],
                                   ),
-                                  trailing: Text("${detailJuz.totalVerses} Ayat"),
+                                  trailing:
+                                      Text("${detailJuz.totalVerses} Ayat"),
                                 );
-                              }
-                              );
-                  
-                  }            
-              ),
+                              });
+                        }),
 
 ////////////////////////////////////////////////////////////\
-
                   ],
                 ),
               )
@@ -292,7 +305,6 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-
     );
   }
 }

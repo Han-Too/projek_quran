@@ -1,29 +1,29 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as rootBundle;
-import 'package:quran_projek/app/modules/home/views/niat_sholat_page.dart';
 
-import '../../../data/models/bacaan.dart';
+import '../../../constants/color.dart';
+import '../../../data/models/doa.dart';
 
-class BacaanSholat extends StatefulWidget {
-  const BacaanSholat({Key? key}) : super(key: key);
+class BacaanDoa extends StatefulWidget {
+  const BacaanDoa({Key? key}) : super(key: key);
 
   @override
-  _BacaanSholatState createState() => _BacaanSholatState();
+  _BacaanDoaState createState() => _BacaanDoaState();
 }
 
-class _BacaanSholatState extends State<BacaanSholat> {
-  Future<List<Bacaan>> ReadJsonData() async {
+class _BacaanDoaState extends State<BacaanDoa> {
+  Future<List<Doa>> ReadJsonData() async {
     final jsondata =
-        await rootBundle.rootBundle.loadString('assets/json/bacaanshalat.json');
+        await rootBundle.rootBundle.loadString('assets/json/doa.json');
     final list = json.decode(jsondata) as List<dynamic>;
-    return list.map((e) => Bacaan.fromJson(e)).toList();
+    return list.map((e) => Doa.fromJson(e)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff0e1446),
+      backgroundColor: const Color(0xFFDDCECE),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,19 +34,19 @@ class _BacaanSholatState extends State<BacaanSholat> {
                   alignment: Alignment.topLeft,
                   child: IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    icon: const Icon(Icons.arrow_back, color: Colors.black),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Align(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.center,
                     child: Container(
                       margin: const EdgeInsets.only(top: 80),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: const Color(0xff44aca0)),
-                      height: 120,
+                          borderRadius: BorderRadius.circular(20),
+                          color: appDarkBlue),
+                      height: 80,
                       width: MediaQuery.of(context).size.width,
                       child: Container(
                           margin: const EdgeInsets.only(left: 20),
@@ -61,14 +61,14 @@ class _BacaanSholatState extends State<BacaanSholat> {
                             mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
                                       Text(
-                                        "Bacaan Sholat",
+                                        "Doa Harian",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        "Bacaan sholat dari Iftitah sampai Salam",
+                                        "Doa Yang Dipakai Sehari-hari",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
@@ -76,46 +76,7 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(width: 8,),
-                            Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Material(
-                        elevation: 3,
-                        borderRadius: BorderRadius.circular(50),
-                        child: Container(
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: const Color(0xff0e1446)),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.transparent,
-                            child: InkWell(
-                                  splashColor: Colors.amber,
-                                  borderRadius: BorderRadius.circular(50),
-                                  onTap: () {
-                                    Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const NiatSholat()));
-                                  },
-                                  child: const Center(
-                                    child: Text(
-                                      "Niat",
-                                      style: TextStyle(
-                                          letterSpacing: 2,
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                            
                                 ],
                               ),
                             
@@ -139,7 +100,7 @@ class _BacaanSholatState extends State<BacaanSholat> {
                     if (data.hasError) {
                       return Center(child: Text("${data.error}"));
                     } else if (data.hasData) {
-                      var items = data.data as List<Bacaan>;
+                      var items = data.data as List<Doa>;
                       return ListView.builder(
                           itemCount: items == null ? 0 : items.length,
                           itemBuilder: (context, index) {
@@ -153,7 +114,7 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                     .copyWith(dividerColor: Colors.transparent),
                                 child: ExpansionTile(
                                   title: Text(
-                                    items[index].name.toString(),
+                                    items[index].nama.toString(),
                                     style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
@@ -165,7 +126,7 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Expanded(
                                               child: Container(
@@ -181,10 +142,12 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                                       left: 8, right: 8),
                                                   child: Text(
                                                     items[index]
-                                                        .arabic
+                                                        .lafal
                                                         .toString(),
+                                                        textAlign: TextAlign.right,
                                                     style: const TextStyle(
-                                                        fontSize: 16,
+                                                        fontSize: 25,
+                                                        color: appDarkBlue,
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -194,7 +157,7 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                                       left: 8, right: 8),
                                                   child: Text(
                                                     items[index]
-                                                        .latin
+                                                        .transliterasi
                                                         .toString(),
                                                     style: const TextStyle(
                                                         fontSize: 14,
@@ -209,10 +172,11 @@ class _BacaanSholatState extends State<BacaanSholat> {
                                                       top: 5),
                                                   child: Text(
                                                       items[index]
-                                                          .terjemahan
+                                                          .arti
                                                           .toString(),
                                                       style: const TextStyle(
                                                         fontSize: 12,
+                                                        color: Colors.black,
                                                       )),
                                                 )
                                               ],

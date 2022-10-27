@@ -6,10 +6,8 @@ abstract class Routes {
   static const INTRODUCTION = _Paths.INTRODUCTION;
   static const HOME = _Paths.HOME;
   static const DETAIL_SURAH = _Paths.DETAIL_SURAH;
-  static const SEARCH = _Paths.SEARCH;
   static const DETAIL_JUZ = _Paths.DETAIL_JUZ;
   static const QUOTE_SCREEN = _Paths.QUOTE_SCREEN;
-  static const DOA_SCREEN = _Paths.DOA_SCREEN;
   static const HADIST_SCREEN = _Paths.HADIST_SCREEN;
   static const AYAT_KURSI = _Paths.AYAT_KURSI;
   
@@ -20,10 +18,8 @@ abstract class _Paths {
   static const INTRODUCTION = '/introduction';
   static const HOME = '/home';
   static const DETAIL_SURAH = '/detail-surah';
-  static const SEARCH = '/search';
   static const DETAIL_JUZ = '/detail-juz';
   static const QUOTE_SCREEN = '/quote-screen';
-  static const DOA_SCREEN = '/doa-screen';
   static const HADIST_SCREEN = '/hadist-screen';
   static const AYAT_KURSI = '/ayat-kursi';
 }

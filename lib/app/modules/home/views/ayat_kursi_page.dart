@@ -26,43 +26,46 @@ class _AyatKursiState extends State<AyatKursi> {
                     icon: const Icon(Icons.arrow_back, color: Colors.white),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 50),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: appBatas),
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:8.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
                     child: Container(
-                        margin: const EdgeInsets.only(top: 120, left: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              "Ayat Kursi",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Bacaan Ayat Kursi dengan tafsirnya",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )),
+                      margin: const EdgeInsets.only(top: 50),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: const Color.fromARGB(255, 255, 255, 255)),
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      child: Container(
+                          margin: const EdgeInsets.only(top: 20, left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Ayat Kursi",
+                                style: TextStyle(
+                                    color: appDarkBlue,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Bacaan Ayat Kursi dengan tafsirnya",
+                                style: TextStyle(
+                                    color: appDarkBlue,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )),
+                    ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 180, right: 20),
+                    padding: const EdgeInsets.only(top: 80, right: 20),
                     child: Material(
                       elevation: 3,
                       borderRadius: BorderRadius.circular(50),

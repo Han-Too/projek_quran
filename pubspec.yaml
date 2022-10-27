@@ -29,5 +29,6 @@ flutter:
     - assets/json/
     - assets/json/bacaanshalat.json
     - assets/json/niatshalat.json
+    - assets/json/doa.json
   uses-material-design: true
 
